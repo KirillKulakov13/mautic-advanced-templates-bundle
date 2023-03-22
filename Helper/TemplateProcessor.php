@@ -2,7 +2,6 @@
 
 namespace MauticPlugin\MauticAdvancedTemplatesBundle\Helper;
 
-use MauticPlugin\MauticAdvancedTemplatesBundle\Feed\FeedFactory;
 use MauticPlugin\MauticCrmBundle\Integration\Salesforce\Object\Lead;
 use Psr\Log\LoggerInterface;
 use Twig\Environment as Twig_Environment;
@@ -39,9 +38,8 @@ class TemplateProcessor
      *
      * @param LoggerInterface            $logger
      * @param Twig_Loader_DynamicContent $twigDynamicContentLoader
-     * @param FeedFactory                $feedFactory
      */
-    public function __construct(LoggerInterface $logger, Twig_Loader_DynamicContent $twigDynamicContentLoader, FeedFactory $feedFactory)
+    public function __construct(LoggerInterface $logger, Twig_Loader_DynamicContent $twigDynamicContentLoader)
     {
         $this->logger = $logger;
         $this->twigDynamicContentLoader = $twigDynamicContentLoader;
@@ -50,7 +48,6 @@ class TemplateProcessor
             $twigDynamicContentLoader, new Twig_Loader_Array([])
         ]));
         $this->configureTwig($this->twigEnv);
-        $this->feedFactory = $feedFactory;
     }
 
 
@@ -83,10 +80,6 @@ class TemplateProcessor
 
         $twig->addFilter(new Twig_SimpleFilter('json_encode', function ($obj) {
             return json_encode($obj);
-        }));
-
-        $twig->addFilter(new Twig_SimpleFilter('rss', function () {
-            return $this->feedFactory->getItems($this->lead['id'], func_get_args());
         }));
     }
 
