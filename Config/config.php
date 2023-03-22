@@ -12,8 +12,7 @@ return [
                 'class' => \MauticPlugin\MauticAdvancedTemplatesBundle\Helper\TemplateProcessor::class,
                 'arguments' => [
                     'monolog.logger.mautic',
-                    'mautic.plugin.advanced_templates.helper.twig_loader_dynamiccontent',
-                    'mautic.plugin.advanced_templates.helper.feed_factory'
+                    'mautic.plugin.advanced_templates.helper.twig_loader_dynamiccontent'
                 ]
             ],
             'mautic.plugin.advanced_templates.helper.twig_loader_dynamiccontent' => [
