@@ -6,24 +6,6 @@ return [
     'version'     => '1.2',
     'author'      => 'Dmitry Berezovsky',
     'services' => [
-        'events' => [
-            // Register any event listeners
-            'mautic.plugin.advanced_templates.email.subscriber' => [
-                'class'     => \MauticPlugin\MauticAdvancedTemplatesBundle\EventListener\EmailSubscriber::class,
-                'arguments' => [
-                    'mautic.plugin.advanced_templates.helper.template_processor',
-                    'mautic.lead.model.lead',
-                    'monolog.logger.mautic',
-                ]
-            ],
-            'mautic.plugin.advanced_templates.sms.subscriber' => [
-                'class'     => \MauticPlugin\MauticAdvancedTemplatesBundle\EventListener\SmsSubscriber::class,
-                'arguments' => [
-                    'mautic.plugin.advanced_templates.helper.template_processor',
-                    'monolog.logger.mautic',
-                ]
-            ]
-        ],
         'other' => [
             // Template processor
             'mautic.plugin.advanced_templates.helper.template_processor' => [
@@ -41,19 +23,6 @@ return [
                     'mautic.model.factory'
                 ]
             ],
-            'mautic.plugin.advanced_templates.helper.feed_factory' => [
-                'class' => \MauticPlugin\MauticAdvancedTemplatesBundle\Feed\FeedFactory::class,
-                'arguments' => [
-                    'mautic.plugin.advanced_templates.helper.feed_processor'
-                ]
-            ],
-            'mautic.plugin.advanced_templates.helper.feed_processor' => [
-                'class' => \MauticPlugin\MauticAdvancedTemplatesBundle\Feed\FeedProcessor::class,
-                'arguments' => [
-                    'mautic.lead.model.lead',
-                ]
-            ],
-
         ]
     ]
 ];
